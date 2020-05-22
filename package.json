@@ -1,6 +1,6 @@
 {
   "name": "@gerhobbelt/shadergraph",
-  "version": "2.0.8-1",
+  "version": "2.0.8-2",
   "description": "GLSL linker",
   "repository": {
     "type": "git",
