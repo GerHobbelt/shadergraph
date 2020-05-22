@@ -1,5 +1,4 @@
 const { task, src, dest, series, parallel, pipe, watch } = require('gulp');
-var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var rename = require("gulp-rename");
 var browserify = require('browserify');
@@ -70,7 +69,6 @@ task('coffee2js', function() {
   return b.bundle()
     .pipe(vsource('index.js'))
     .pipe(buffer())
-    .pipe(uglify())
     .pipe(dest('.tmp/'));
 });
 
@@ -90,15 +88,6 @@ task('bundle', function () {
   return src(bundle)
     .pipe(concat(builds.bundle))
     .pipe(dest('.'));
-});
-
-task('uglify', function () {
-  return src(products)
-    .pipe(uglify())
-    .pipe(rename({
-      extname: ".min.js"
-    }))
-    .pipe(dest('build'));
 });
 
 task('karma', function (done) {
@@ -149,7 +138,7 @@ task('build',
 }));
 
 task('default',
-  series('build', 'uglify', function(done) {
+  series('build', function(done) {
   done();
 }));
 
